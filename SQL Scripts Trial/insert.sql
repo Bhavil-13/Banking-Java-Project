@@ -1,41 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Apr 12, 2023 at 07:04 PM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `sample`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `account`
---
 
 CREATE TABLE `account` (
   `account_id` int(11) NOT NULL,
   `person_id` int(11) NOT NULL,
   `balance` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `account`
---
 
 INSERT INTO `account` (`account_id`, `person_id`, `balance`) VALUES
 (1, 1, 10000),
@@ -48,12 +17,6 @@ INSERT INTO `account` (`account_id`, `person_id`, `balance`) VALUES
 (8, 8, 0),
 (9, 9, 1);
 
--- --------------------------------------------------------
-
---
--- Table structure for table `credit_score`
---
-
 CREATE TABLE `credit_score` (
   `person_id` int(11) NOT NULL,
   `score` int(11) NOT NULL,
@@ -62,11 +25,7 @@ CREATE TABLE `credit_score` (
   `tloans` int(11) NOT NULL,
   `rploans` int(11) NOT NULL,
   `occupation` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `credit_score`
---
+)
 
 INSERT INTO `credit_score` (`person_id`, `score`, `salary`, `net_worth`, `tloans`, `rploans`, `occupation`) VALUES
 (1, 8, 20000, 1000000, 3, 2, 'Software Engineer'),
@@ -79,12 +38,6 @@ INSERT INTO `credit_score` (`person_id`, `score`, `salary`, `net_worth`, `tloans
 (8, 2, 0, 5, 1001, 99, 'Former Businessman'),
 (9, 0, 50, 500000, 1012, 0, 'Fugitive');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `loans`
---
-
 CREATE TABLE `loans` (
   `loan_id` int(11) NOT NULL,
   `application_id` int(11) NOT NULL,
@@ -95,9 +48,6 @@ CREATE TABLE `loans` (
   `last_repay` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `loans`
---
 
 INSERT INTO `loans` (`loan_id`, `application_id`, `account_id`, `roi`, `principal`, `amt_rem`, `last_repay`) VALUES
 (1, 1, 2, 10, 8888, 888, '2023-04-12 22:29:54.000000'),
@@ -147,25 +97,25 @@ CREATE TABLE `npa` (
 --
 
 CREATE TABLE `person` (
-  `person_id` int(11) NOT NULL,
+  `person_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `address` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+)
 
 --
 -- Dumping data for table `person`
 --
 
 INSERT INTO `person` (`person_id`, `name`, `address`) VALUES
-(1, 'Samarth Sanjay Wankhade', 'Banglore'),
-(2, 'Samarjeet Sanjay Wankhade', 'Hiwarkhed'),
-(3, 'Deep Kumar Patel', 'Ahmedabad'),
-(4, 'Bhavil Anil Sharma', 'Delhi'),
-(5, 'Jacob Q Matthews', 'Chennai'),
-(6, 'Arwind K Kejriwal', 'Delhi'),
-(7, 'Mukesh D Ambani', 'Mumbai'),
-(8, 'Anil D Ambani', 'Mumbai'),
-(9, 'Mehul Choksi', 'London');
+('Samarth Sanjay Wankhade', 'Banglore'),
+('Samarjeet Sanjay Wankhade', 'Hiwarkhed'),
+('Deep Kumar Patel', 'Ahmedabad'),
+('Bhavil Anil Sharma', 'Delhi'),
+('Jacob Q Matthews', 'Chennai'),
+('Arwind K Kejriwal', 'Delhi'),
+('Mukesh D Ambani', 'Mumbai'),
+('Anil D Ambani', 'Mumbai'),
+('Mehul Choksi', 'London');
 
 -- --------------------------------------------------------
 
@@ -268,6 +218,4 @@ ALTER TABLE `transactions`
   ADD CONSTRAINT `transactions_ibfk_2` FOREIGN KEY (`receiver_acc_id`) REFERENCES `account` (`account_id`);
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
