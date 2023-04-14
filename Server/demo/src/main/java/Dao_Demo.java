@@ -1,4 +1,3 @@
-package Server_Side_Utility;
 
 //STEP 1. Import required packages
 import java.sql.*;
