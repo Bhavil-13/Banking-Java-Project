@@ -1,0 +1,22 @@
+.box {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    width: 50%;
+    text-align: center;
+}
+.landing {
+    margin-top: 2em;
+}
+
+.navbar-brand {
+    margin: 0.5em;
+}
+.a {
+    margin-top: 100em;
+}
+.btn {
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
