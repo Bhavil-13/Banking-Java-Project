@@ -2,8 +2,9 @@
 //STEP 1. Import required packages
 import java.sql.*;
 
+import DAOObjects.DAO_Factory;
+import DAOObjects.PersonDAO;
 import models.Person;
-import models.PersonDAO;
 
 public class Dao_Demo {
 	public static DAO_Factory daoFactory;

@@ -1,5 +1,5 @@
 package models;
-public class account {
+public class Account {
     int accountID, personalID;
     float balance;
 }

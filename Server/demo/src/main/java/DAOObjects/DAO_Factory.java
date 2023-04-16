@@ -1,7 +1,6 @@
+package DAOObjects;
 import java.lang.*;
 import java.sql.*;
-
-import models.PersonDAO;
 /*
 	Methods to be called in the following order:
 
@@ -21,6 +20,7 @@ public class DAO_Factory{
 
 	// You can add additional DAOs here as needed
 	PersonDAO personDAO = null;
+	AccountDAO accountDAO=null;
 
 	boolean activeConnection = false;
 
@@ -51,14 +51,13 @@ public class DAO_Factory{
 		    System.out.println("VendorError: " + ex.getErrorCode());
 		}
 	}
-	public PersonDAO getpersonDAO() throws Exception
+
+	public PersonDAO getaccountDAO() throws Exception
 	{
 		if( activeConnection == false )
 			throw new Exception("Connection not activated...");
-
-		if( personDAO == null )
-			personDAO = new PersonDAO( dbconnection );
-
+		if( accountDAO == null )
+			accountDAO = new AccountDAO( dbconnection );
 		return personDAO;
 	}
 	public void deactivateConnection( TXN_STATUS txn_status )

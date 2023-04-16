@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.core.sym.Name;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "name","address","email","password" })
@@ -15,6 +16,12 @@ public class Person {
     int personID;
     String name, address,email,password;
 
+    public Person (String name,String address,String email, String password){
+        this.name=name;
+        this.address=address;
+        this.email=email;
+        this.password=password;
+    }
     @JsonProperty("password")
     public void setPassword(String password) {
         this.password = password;
