@@ -6,6 +6,10 @@
 
 <web-app>
 
+
+
+
+
   <servlet>
     <servlet-name>controlServlet</servlet-name>
     <servlet-class>example</servlet-class>
@@ -15,4 +19,33 @@
     <servlet-name>controlServlet</servlet-name>
     <url-pattern>/hello</url-pattern>
   </servlet-mapping>
+
+
+
+  <servlet>
+    <servlet-name>CreateAPerson</servlet-name>
+    <servlet-class>CreateAPerson</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CreateAPerson</servlet-name>
+    <url-pattern>/createAPerson</url-pattern>
+  </servlet-mapping>
+
+
+
+
+<servlet>
+    <servlet-name>CreateAccount</servlet-name>
+    <servlet-class>CreateAccount</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>CreateAccount</servlet-name>
+    <url-pattern>/createAccount</url-pattern>
+  </servlet-mapping>
+
+
+
+
 </web-app>
