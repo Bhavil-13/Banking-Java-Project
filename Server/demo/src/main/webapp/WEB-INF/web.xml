@@ -6,46 +6,42 @@
 
 <web-app>
 
-
-
-
-
   <servlet>
-    <servlet-name>controlServlet</servlet-name>
-    <servlet-class>example</servlet-class>
+    <servlet-name>Account</servlet-name>
+    <servlet-class>Account.AccountBackend</servlet-class>
   </servlet>
-
   <servlet-mapping>
-    <servlet-name>controlServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <servlet-name>Account</servlet-name>
+    <url-pattern>/account</url-pattern>
   </servlet-mapping>
 
-
-
   <servlet>
-    <servlet-name>CreateAPerson</servlet-name>
-    <servlet-class>CreateAPerson</servlet-class>
+    <servlet-name>LoanApplication</servlet-name>
+    <servlet-class>LoanApplication.LoanApplicationBackend</servlet-class>
   </servlet>
-
   <servlet-mapping>
-    <servlet-name>CreateAPerson</servlet-name>
-    <url-pattern>/createAPerson</url-pattern>
+    <servlet-name>LoanApplication</servlet-name>
+    <url-pattern>/loanApplication</url-pattern>
   </servlet-mapping>
-
-
-
 
 <servlet>
-    <servlet-name>CreateAccount</servlet-name>
-    <servlet-class>CreateAccount</servlet-class>
+    <servlet-name>Transaction</servlet-name>
+    <servlet-class>Transaction.TransactionBackend</servlet-class>
   </servlet>
 
   <servlet-mapping>
-    <servlet-name>CreateAccount</servlet-name>
-    <url-pattern>/createAccount</url-pattern>
+    <servlet-name>Transaction</servlet-name>
+    <url-pattern>/transaction</url-pattern>
   </servlet-mapping>
 
-
+  <servlet>
+    <servlet-name>CreateAPerson</servlet-name>
+    <servlet-class>Person.PersonBackend</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateAPerson</servlet-name>
+    <url-pattern>/person</url-pattern>
+  </servlet-mapping>
 
 
 </web-app>

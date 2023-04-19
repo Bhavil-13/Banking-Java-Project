@@ -1,5 +1,5 @@
 create table person(
-person_id INT NOT NULL,
+person_id INT ,
 name VARCHAR(255) NOT NULL,
 mname VARCHAR(255) NOT NULL,
 lname VARCHAR(255) NOT NULL,
