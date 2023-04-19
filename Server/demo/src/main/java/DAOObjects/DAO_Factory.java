@@ -52,13 +52,21 @@ public class DAO_Factory{
 		}
 	}
 
-	public PersonDAO getaccountDAO() throws Exception
+	public PersonDAO getPersonDAO() throws Exception
+	{
+		if( activeConnection == false )
+			throw new Exception("Connection not activated...");
+		if( personDAO == null )
+			personDAO = new PersonDAO( dbconnection );
+		return personDAO;
+	}
+	public AccountDAO getAccountDAO() throws Exception
 	{
 		if( activeConnection == false )
 			throw new Exception("Connection not activated...");
 		if( accountDAO == null )
 			accountDAO = new AccountDAO( dbconnection );
-		return personDAO;
+		return accountDAO;
 	}
 	public void deactivateConnection( TXN_STATUS txn_status )
 	{

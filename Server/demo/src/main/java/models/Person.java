@@ -3,6 +3,8 @@ package models;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.jmx.export.naming.IdentityNamingStrategy;
+
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -21,6 +23,14 @@ public class Person {
         this.address=address;
         this.email=email;
         this.password=password;
+        personID=(Integer) null;
+    }
+    public Person (String name,String address,String email, String password,Integer id){
+        this.name=name;
+        this.address=address;
+        this.email=email;
+        this.password=password;
+        personID=id;
     }
     @JsonProperty("password")
     public void setPassword(String password) {

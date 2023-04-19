@@ -54,8 +54,8 @@ public class CreateAPerson extends HttpServlet {
             daoFactory.activateConnection();
 
 			// Carry out DB operations using DAO
-			PersonDAO sdao = daoFactory.getpersonDAO();
-			sdao.createPerson(person,out);
+			PersonDAO sdao = daoFactory.getPersonDAO();
+			sdao.addPerson(person);
             }
         catch (Exception e) {
 			out.print(e.getMessage());

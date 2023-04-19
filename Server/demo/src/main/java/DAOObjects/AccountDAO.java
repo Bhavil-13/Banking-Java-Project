@@ -1,100 +1,68 @@
 package DAOObjects;
-import java.util.ArrayList;
-import java.util.List;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import models.Account;
 
-import java.io.BufferedReader;
-import java.io.PrintWriter;
-import java.sql.*;
-public class AccountDAO {
-	Connection dbConnection;
-	public AccountDAO(Connection dbconn){
-		dbConnection = dbconn;
-	}
-	public void createAccount(Account account,PrintWriter out){
-		Integer id;
-	try {
-	Connection con = DatabaseConnection.initializeDatabase();
-	PreparedStatement st = con
-		   .prepareStatement("insert into account(name,address,email,password) values(?,?,?,?);",Statement.RETURN_GENERATED_KEYS);
-	st.setString(1, account.getName());
-	st.setString(2, account.getAddress());
-	st.setString(3, account.getEmail());
-	st.setString(4, account.getPassword());
-	try {
-		id=st.executeUpdate();
+public class AccountDAO{
+    private Connection connection;
 
-	} catch (SQLIntegrityConstraintViolationException e) {
-	st=con.prepareStatement("select accountid from account where email=?");
-	 st.setString(1, account.getEmail());
-	ResultSet ids=st.executeQuery();
-	ids.next();
-	id = ids.getInt(1);
-	st.close();
-	con.close();
-	}
-	out.print("{\"accountid\"="+id.toString(0)+"}");
-	// return id;
-}
-catch (Exception e) {
-	e.printStackTrace();
-}
-	// return id;
+    public AccountDAO(Connection connection) {
+        this.connection=connection;
+    }
 
-	}
-	public Account getAccountByKey(int accountid) {
-		Account s=null;
-		String sql;
-		PreparedStatement stmt = null;
-		try{
-			sql = "select * from Account where accountid=?";
-			stmt = dbConnection.prepareStatement(sql);
-			stmt.setInt(1, accountid);
-			ResultSet rs = stmt.executeQuery(sql);
+    public void create(Account account) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO accounts (account_id, person_id, balance) VALUES (?, ?, ?)");
+            statement.setInt(1, account.getAccount());
+            statement.setInt(2, account.getPerson_id());
+            statement.setDouble(3, account.getBalance());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-			//STEP 5: Extract data from result set
-			s=new Account(rs.getString("name"),
-			rs.getString("name"),
-			rs.getString("name"),
-			rs.getString("name"));
-			return s;
-		} catch (SQLException ex) {
-		    // handle any errors
-			ex.printStackTrace();
-		}
-		// Add exception handling when there is no matching record
-		return s;
-	}
+    public Account read(int account_id) {
+        Account account = null;
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM accounts WHERE account_id = ?");
+            statement.setInt(1, account_id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                account = new Account();
+                account.setAccount(resultSet.getInt("account_id"));
+                account.setPerson_id(resultSet.getInt("person_id"));
+                account.setBalance(resultSet.getDouble("balance"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return account;
+    }
 
+    public void update(Account account) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("UPDATE accounts SET person_id = ?, balance = ? WHERE account_id = ?");
+            statement.setInt(1, account.getPerson_id());
+            statement.setDouble(2, account.getBalance());
+            statement.setInt(3, account.getAccount());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public void addAccount(Account Account) {
-		PreparedStatement preparedStatement = null;
-		String sql;
-		sql = "insert into Account(accountid, name) values (?,?)";
-
-		try {
-			preparedStatement = dbConnection.prepareStatement(sql);
-
-			// preparedStatement.setInt(1, Account.getaccountid());
-			preparedStatement.setString(2, Account.getName());
-
-			// execute insert SQL stetement
-			preparedStatement.executeUpdate();
-
-			// System.out.println("Account: Roll No " + Account.getaccountid()
-				// + ", added to the database");
-		} catch (SQLException e) {
- 			System.out.println(e.getMessage());
- 		}
-
-		try{
-			if (preparedStatement != null) {
-				preparedStatement.close();
-			}
-		} catch (SQLException e) {
- 			System.out.println(e.getMessage());
- 		}
-	}
+    public void delete(Account account) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM accounts WHERE account_id = ?");
+            statement.setInt(1, account.getAccount());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
