@@ -1,9 +1,10 @@
+
 create table person(
-person_id INT ,
+person_id INT AUTO_INCREMENT,
 name VARCHAR(255) NOT NULL,
-mname VARCHAR(255) NOT NULL,
-lname VARCHAR(255) NOT NULL,
-address VARCHAR(1000) NOT NULL,
+address VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
 PRIMARY KEY (person_id)
 );
 --
@@ -20,9 +21,9 @@ create table credit_score(
 
 create table account(
 person_id INT NOT NULL,
-account_id INT NOT NULL,
+id INT NOT NULL AUTO_INCREMENT,
 balance INT NOT NULL,
-PRIMARY KEY (account_id),
+PRIMARY KEY (id),
 FOREIGN KEY (person_id) REFERENCES person(person_id)
 );
 

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({ "name", "address", "email", "password" })
 public class Person {
+
     Person(){
 
     }

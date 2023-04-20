@@ -11,7 +11,6 @@ const Login = () => {
     {
       email: "",
       password: "",
-      admin: false
     }
   );
   const handleInput = (e) => {
@@ -24,9 +23,11 @@ const Login = () => {
     e.preventDefault();
 
     console.log(data.email, data.password);
-    
+    const strdata = JSON.stringify(data);
+
+
     /* now to do validation wait for backend */
-    const found_data = await axios.post("http://localhost:5000/", data).then(function (response) {
+    const found_data = await axios.post("http://localhost:8080/demo/person?requestType=login", strdata).then(function (response) {
       console.log("response found");
       console.log(response);
     }).catch(function (error) {
@@ -34,7 +35,7 @@ const Login = () => {
     });
 
     // if login succesfull then add to local storage
-    
+
   }
 
 
