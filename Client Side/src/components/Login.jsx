@@ -26,6 +26,7 @@ const Login = () => {
     console.log(data.email, data.password);
     
     /* now to do validation wait for backend */
+    
     const found_data = await axios.post("http://localhost:5000/", data).then(function (response) {
       console.log("response found");
       console.log(response);
