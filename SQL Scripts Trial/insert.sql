@@ -110,7 +110,7 @@ INSERT INTO `person` (`person_id`, `name`, `address`) VALUES
 ('Samarth Sanjay Wankhade', 'Banglore'),
 ('Samarjeet Sanjay Wankhade', 'Hiwarkhed'),
 ('Deep Kumar Patel', 'Ahmedabad'),
-('Bhavil Anil Sharma', 'Delhi'),
+('Bhavil Bhavil Sharma', 'Delhi'),
 ('Jacob Q Matthews', 'Chennai'),
 ('Arwind K Kejriwal', 'Delhi'),
 ('Mukesh D Ambani', 'Mumbai'),
