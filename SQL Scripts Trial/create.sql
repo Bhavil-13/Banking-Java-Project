@@ -1,8 +1,8 @@
 create table person(
-person_id INT ,
+person_id INT not null auto_increment,
 name VARCHAR(255) NOT NULL,
-mname VARCHAR(255) NOT NULL,
-lname VARCHAR(255) NOT NULL,
+email VARCHAR(255) NOT NULL,
+password VARCHAR(255) NOT NULL,
 address VARCHAR(1000) NOT NULL,
 PRIMARY KEY (person_id)
 );
@@ -20,14 +20,14 @@ create table credit_score(
 
 create table account(
 person_id INT NOT NULL,
-account_id INT NOT NULL,
+account_id INT NOT NULL auto_increment,
 balance INT NOT NULL,
 PRIMARY KEY (account_id),
 FOREIGN KEY (person_id) REFERENCES person(person_id)
 );
 
 create table transactions(
-transaction_id INT NOT NULL,
+transaction_id INT NOT NULL auto_increment,
 sender_acc_id INT NOT NULL,
 receiver_acc_id INT NOT NULL,
 amount INT NOT NULL,
@@ -39,7 +39,7 @@ FOREIGN KEY (receiver_acc_id) REFERENCES account(account_id)
 );
 
 create table loan_applications(
-application_id INT NOT NULL,
+application_id INT NOT NULL auto_increment,
 person_id INT NOT NULL,
 amount INT NOT NULL,
 reason VARCHAR(255) NOT NULL,
@@ -51,7 +51,7 @@ FOREIGN KEY (account_id) REFERENCES account(account_id),
 );
 
 create table loans(
-loan_id INT NOT NULL,
+loan_id INT NOT NULL auto_increment,
 application_id INT NOT NULL,
 account_id INT NOT NULL
 roi INT NOT NULL,
@@ -63,12 +63,8 @@ FOREIGN KEY (application_id) REFERENCES loan_applications(application_id),
 FOREIGN KEY (account_id) REFERENCES account(account_id),
 );
 
-
 create table npa(
 loan_id INT NOT NULL,
 solution VARCHAR(255),
 loss INT NOT NULL
 );
-
-
-
