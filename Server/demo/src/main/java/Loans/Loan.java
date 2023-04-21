@@ -10,90 +10,93 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "id", "application_id", "account_id", "rate_of_interest", "principal_amt", "time" })
+@JsonPropertyOrder({ "id", "application_id", "account_id", "rate_of_Integererest", "principal_amt", "time" })
 public class Loan {
-    int id, applicationId, accountId, time;
-    double rateOfInterest, principalAmt;
+    Integer id, applicationId, accountId, time;
+    Double rateOfIntegererest, principalAmt;
 
+    public String getloansjson(){
+        return "{\"loan_id\":\""+id.toString()+"\",\"application_id\":\""+applicationId.toString()+"\",\"principal_amt\":\""+principalAmt.toString()+"\",\"time\":\""+time.toString()+"\"}";
+    }
     public Loan() {
 
     }
 
-    public Loan(int applicationId, int accountId, double rateOfInterest, double principalAmt, int time) {
+    public Loan(Integer applicationId, Integer accountId, Double rateOfIntegererest, Double principalAmt, Integer time) {
         this.applicationId = applicationId;
         this.accountId = accountId;
-        this.rateOfInterest = rateOfInterest;
+        this.rateOfIntegererest = rateOfIntegererest;
         this.principalAmt = principalAmt;
         this.time = time;
         this.id = (Integer) null;
     }
 
-    public Loan(int applicationId, int accountId, double rateOfInterest, double principalAmt, int time, int id) {
+    public Loan(Integer applicationId, Integer accountId, Double rateOfIntegererest, Double principalAmt, Integer time, Integer id) {
         this.applicationId = applicationId;
         this.accountId = accountId;
-        this.rateOfInterest = rateOfInterest;
+        this.rateOfIntegererest = rateOfIntegererest;
         this.principalAmt = principalAmt;
         this.time = time;
         this.id = id;
     }
 
     @JsonProperty("id")
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @JsonProperty("id")
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     @JsonProperty("application_id")
-    public void setApplicationId(int applicationId) {
+    public void setApplicationId(Integer applicationId) {
         this.applicationId = applicationId;
     }
 
     @JsonProperty("application_id")
-    public int getApplicationId() {
+    public Integer getApplicationId() {
         return applicationId;
     }
 
     @JsonProperty("account_id")
-    public void setAccountId(int accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 
     @JsonProperty("account_id")
-    public int getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
-    @JsonProperty("rate_of_interest")
-    public void setRateOfInterest(double rateOfInterest) {
-        this.rateOfInterest = rateOfInterest;
+    @JsonProperty("rate_of_Integererest")
+    public void setRateOfInterest(Double rateOfIntegererest) {
+        this.rateOfIntegererest = rateOfIntegererest;
     }
 
-    @JsonProperty("rate_of_interest")
-    public double getRateOfInterest() {
-        return rateOfInterest;
+    @JsonProperty("rate_of_Integererest")
+    public Double getRateOfInterest() {
+        return rateOfIntegererest;
     }
 
     @JsonProperty("principal_amt")
-    public void setPrincipalAmt(double principalAmt) {
+    public void setPrincipalAmt(Double principalAmt) {
         this.principalAmt = principalAmt;
     }
 
     @JsonProperty("principal_amt")
-    public double getPrincipalAmt() {
+    public Double getPrincipalAmt() {
         return principalAmt;
     }
 
     @JsonProperty("time")
-    public void setTime(int time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 
     @JsonProperty("time")
-    public int getTime() {
+    public Integer getTime() {
         return time;
     }
 

@@ -24,9 +24,11 @@ const Apply = () => {
         e.preventDefault();
 
         console.log(data.accountid, data.amount);
+        const strdata = JSON.stringify(data);
+
 
         /* now to do validation wait for backend */
-        const found_data = await axios.post("http://localhost:5000/", data).then(function (response) {
+        const found_data = await axios.post("http://localhost:8080/demo/loanApplication?requestType=applyForLoan", strdata).then(function (response) {
             console.log("response found");
             console.log(response);
         }).catch(function (error) {
