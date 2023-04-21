@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Landing from './components/Landing';
 import Login from   './components/Login';
 import Status from './components/Status';
-import { Shas } from './components/Shas';
+import Shas  from './components/Shas';
 import LoginAsAdmin from   './components/LoginAsAdmin';
 import Register from   './components/Register';
 import UserDashboard from './components/UserDashboard';
