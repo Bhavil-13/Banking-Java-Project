@@ -10,17 +10,27 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "account_id", "applicant_id", "amount", "reason", "status" })
+@JsonPropertyOrder({ "application_id","account_id", "applicant_id", "amount", "reason", "status" })
 public class LoanApplication {
-
-    private int accountId;
-    private int applicantId;
-    private double amount;
+    private Integer applicationId;
+    private Integer accountId;
+    private Integer applicantId;
+    private Double amount;
     private String reason;
     private String status;
-    private int id;
+    private Integer id;
 
-    public LoanApplication(int accountId, int applicantId, double amount, String reason, String status) {
+    @JsonProperty("application_id")
+    public Integer getApplicationId() {
+        return applicationId;
+    }
+
+    @JsonProperty("application_id")
+    public void setApplicationId(Integer applicationId) {
+        this.applicationId = applicationId;
+    }
+
+    public LoanApplication(Integer accountId, Integer applicantId, Double amount, String reason, String status) {
         this.accountId = accountId;
         this.applicantId = applicantId;
         this.amount = amount;
@@ -32,17 +42,17 @@ public class LoanApplication {
     }
 
     @JsonProperty("account_id")
-    public void setAccountId(int accountId) {
+    public void setAccountId(Integer accountId) {
         this.accountId = accountId;
     }
 
     @JsonProperty("applicant_id")
-    public void setApplicantId(int applicantId) {
+    public void setApplicantId(Integer applicantId) {
         this.applicantId = applicantId;
     }
 
     @JsonProperty("amount")
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -56,26 +66,26 @@ public class LoanApplication {
         this.status = status;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @JsonProperty("account_id")
-    public int getAccountId() {
+    public Integer getAccountId() {
         return accountId;
     }
 
     @JsonProperty("applicant_id")
-    public int getApplicantId() {
+    public Integer getApplicantId() {
         return applicantId;
     }
 
     @JsonProperty("amount")
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 

@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoanApplicationDAO {
 
@@ -22,9 +24,7 @@ public class LoanApplicationDAO {
         try {
             pstmt = dbConnection.prepareStatement(sql);
             pstmt.setInt(1, applicationId);
-
             ResultSet rs = pstmt.executeQuery();
-
             if (rs.next()) {
                 loanApp = new LoanApplication();
                 loanApp.setId(rs.getInt("id"));
@@ -80,4 +80,53 @@ public class LoanApplicationDAO {
 
         return loanApp;
     }
+
+    public boolean updateLoanApplication(int loanAppId, String status) {
+        boolean success = false;
+        String sql = "UPDATE loan_applications SET status=? WHERE id=?";
+        PreparedStatement pstmt = null;
+
+        try {
+            pstmt = dbConnection.prepareStatement(sql);
+            pstmt.setString(1, status);
+            pstmt.setInt(2, loanAppId);
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                success = true;
+            }
+        } catch (SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+
+        return success;
+    }
+    public List<LoanAppWithExtras> getAllLoansAppWithExtras() {
+        List<LoanAppWithExtras> loansWithPersonAndBranch = new ArrayList<>();
+        try {
+            String sql = "SELECT loan_applications.application_id, loan_applications.amount, credit_score.score" +
+            "FROM loan " +
+            "INNER JOIN person ON loan_applications.person_id= person.person_id " +
+            "INNER JOIN credit_score ON person.person_id = credit_score.person_id";
+            PreparedStatement statement = dbConnection.prepareStatement(sql);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                LoanAppWithExtras loanWithExtras = new LoanAppWithExtras();
+                loanWithExtras.setAmount(resultSet.getDouble("principal_amt"));
+                loanWithExtras.setApplicationId(resultSet.getInt("application_id"));
+                loanWithExtras.setAccountId(resultSet.getInt("person_id"));
+                loanWithExtras.setCreditScore(resultSet.getInt("score"));
+                loansWithPersonAndBranch.add(loanWithExtras);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return loansWithPersonAndBranch;
+    }
+
 }
