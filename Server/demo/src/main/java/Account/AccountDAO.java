@@ -62,6 +62,7 @@ public class AccountDAO {
             while (rs.next()) {
                 int account_id = rs.getInt("id");
                 double balance = rs.getDouble("balance");
+                System.out.println(account_id+"  "+balance);
                 Account account = new Account(person_id, balance);
                 account.setId(account_id);
                 accounts.add(account);

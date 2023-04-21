@@ -11,17 +11,18 @@ public class LoanDAO {
         this.connection = connection;
     }
 
-    public void addLoan(Loan loan) throws SQLException {
+    public Integer addLoan(Loan loan) throws SQLException {
         String query = "INSERT INTO loan (account_id, amount, interest_rate, term_months) VALUES (?, ?, ?, ?)";
 
-        PreparedStatement statement = connection.prepareStatement(query);
+        PreparedStatement statement = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
         statement.setInt(1, loan.getAccountId());
         statement.setDouble(2, loan.getPrincipalAmt());
         statement.setDouble(3, loan.getRateOfInterest());
         statement.setInt(4, loan.getTime());
 
-        statement.executeUpdate();
+        Integer id=statement.executeUpdate();
         statement.close();
+        return id;
     }
 
     public void updateLoan(Loan loan) throws SQLException {
@@ -85,7 +86,6 @@ public class LoanDAO {
                 loan.setRateOfInterest(resultSet.getDouble("rate_of_interest"));
                 loan.setPrincipalAmt(resultSet.getDouble("principal_amt"));
                 loan.setTime(resultSet.getInt("time"));
-
                 loans.add(loan);
             }
         } catch (SQLException e) {
@@ -93,4 +93,7 @@ public class LoanDAO {
         }
         return loans;
     }
+
+
+
 }

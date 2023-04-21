@@ -4,6 +4,7 @@ package Account;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,9 @@ public class AccountBackend extends HttpServlet {
             System.out.println(url);
             if (url.contains("createAccount")){
                 out.print(CreateAccount(account));
+            }
+            if (url.contains("getAccountsByID")){
+                GetAllAccounts(account);
             }
             daoFactory.deactivateConnection(TXN_STATUS.COMMIT);
 
@@ -76,6 +80,23 @@ public class AccountBackend extends HttpServlet {
             System.out.println("account error");
             e.printStackTrace();
             return "{\"Status\":\"1\",\" accountid\":\"null\"}";
+        }
+    }
+    private String GetAllAccounts(Account account) {
+        try {
+            List<Account> a=dao.getAccountsByPersonId(account.getPersonId());
+            out.write("{");
+            System.out.println("account created");
+            for (int i = 0; i < a.size(); i++) {
+                System.out.println(a.get(i).getaccountsjson());
+                out.write(a.get(i).getaccountsjson()+",");
+            }
+            out.write("}");
+            return "";
+        } catch (Exception e) {
+            System.out.println("account error");
+            e.printStackTrace();
+            return "";
         }
     }
 

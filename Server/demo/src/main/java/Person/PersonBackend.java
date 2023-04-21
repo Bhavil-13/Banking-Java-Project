@@ -52,8 +52,6 @@ public class PersonBackend extends HttpServlet {
             out.println(e.getStackTrace());
             e.printStackTrace();
         }
-        // out.println(getServletInfo()+"Hello Post");
-
     }
 
     @Override
@@ -67,27 +65,32 @@ public class PersonBackend extends HttpServlet {
             // Status zero means success
             System.out.println("register");
             if(id.equals(-1)){
-            return "{\"Status\":\"1\",\" personid\":\"null\"}";
+            return "{\"Status\":\"1\",\"personid\":\"null\"}";
 
             }
-            return "{\"Status\":\"0\",\" personid\":\""+id.toString()+" \"}";
+            return "{\"Status\":\"0\",\"personid\":\""+id.toString()+"\"}";
         } catch (Exception e) {
             // TODO Auto-generated catch block
             // Status one means already exist
             Integer id=dao.getPersonByEmail(person.getEmail()).getId();
             System.out.println("register error");
             e.printStackTrace();
-            return "{\"Status\":\"1\",\" personid\":\""+id.toString()+" \"}";
+            return "{\"Status\":\"1\",\"personid\":\""+id.toString()+"\"}";
         }
     }
 
     private String Login(Person person) {
         try {
             Person persontest=dao.getPersonByEmail(person.getEmail());
-            if(persontest.getPassword().equals(person.getPassword()));
-            // Status zero means success
-            System.out.println("register");
-            return "{\"Status\":\"0\",\" personid\":\""+persontest.getId().toString()+" \"}";
+            if(persontest.getPassword().equals(person.getPassword())){
+
+                // Status zero means success
+                System.out.println("register");
+                return "{\"Status\":\"0\",\"personid\":\""+persontest.getId().toString()+"\"}";
+            }else{
+                System.out.println("register");
+                return "{\"Status\":\"1\",\"personid\":\"null\"}";
+            }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             // Status one means incorrect password

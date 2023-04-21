@@ -21,7 +21,7 @@ create table credit_score(
 
 create table account(
 person_id INT NOT NULL,
-id INT NOT NULL AUTO_INCREMENT,
+account_id INT NOT NULL AUTO_INCREMENT,
 balance INT NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (person_id) REFERENCES person(person_id)
@@ -56,7 +56,7 @@ loan_id INT NOT NULL,
 application_id INT NOT NULL,
 account_id INT NOT NULL
 roi INT NOT NULL,
-principal INT NOT NULL,
+principal_amt INT NOT NULL,
 amt_rem INT NOT NULL,
 last_repay INT NOT NULL,
 PRIMARY KEY (loan_id),

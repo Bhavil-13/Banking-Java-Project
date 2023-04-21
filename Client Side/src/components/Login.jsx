@@ -29,13 +29,10 @@ const Login = () => {
     /* now to do validation wait for backend */
     const found_data = await axios.post("http://localhost:8080/demo/person?requestType=login", strdata).then(function (response) {
       console.log("response found");
-      console.log(response);
+      console.log(response.data.Status);
     }).catch(function (error) {
       console.log("error occured in REGISTER");
     });
-
-    // if login succesfull then add to local storage
-
   }
 
 
