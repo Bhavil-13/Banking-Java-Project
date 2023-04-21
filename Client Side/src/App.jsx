@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // importing pages
 import Landing from './components/Landing';
 import Login from   './components/Login';
+import Status from './components/Status';
+import Shas  from './components/Shas';
 import LoginAsAdmin from   './components/LoginAsAdmin';
 import Register from   './components/Register';
 import UserDashboard from './components/UserDashboard';
@@ -41,6 +43,8 @@ const App = () => {
         <Routes>
           <Route index element={<Landing />}></Route>
           <Route path='/login' element={<Login/>}></Route>
+          <Route path='/status' element={<Status/>}></Route>
+          <Route path='/shas' element={<Shas/>}></Route>
           <Route path='/loginasadmin' element={<LoginAsAdmin/>}></Route>
           <Route path='/register' element={<Register/>}></Route>
           <Route path='/userdashboard' element={<UserDashboard/>}></Route>
